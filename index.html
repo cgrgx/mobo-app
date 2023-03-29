@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=10., maximum-scale=1.0, user-scalable=no">
+    <title>CG Review A2</title>
+
+    <!--jquery-->
+    <script src="js/lib/jquery-2.1.4.js"></script>
+    <!--jquery mobile-->
+    <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+    <!--jquery mobile styles-->
+    <link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.css">
+    <!--jquery validation-->
+    <script src="js/lib/jquery.validate.js"></script>
+    <!--our stuff-->
+    <script src="js/cgdatabase.js"></script>
+    <script src="js/cgDAL.js"></script>
+    <script src="js/cgfacade.js"></script>
+    <script src="js/cgutil.js"></script>
+    <script src="js/cgglobal.js"></script>
+    <link rel="stylesheet" href="css/cgmystyle.css">
+</head>
+
+<body>
+    <!--home page-->
+    <div id="cgHomePage" data-role="page">
+        <header data-role="header" data-position="fixed" data-theme="a">
+            <h3>CG Review A2</h3>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#cgHomePage" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
+                    <li><a href="#cgAddReviewPage" data-icon="plus">Add</a></li>
+                    <li><a href="#cgViewReviewPage" data-icon="grid">Review</a></li>
+                    <li><a href="#cgSettingPage" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <h2>Chiran Gurung's Review A2 App</h2>
+
+            <p>Welcome to the Chiran Gurung's Review A2 App. A prototype designed for mobile programming class. This
+                is the first iteration of the app to keep track of different places you visited along with your
+                reviews.</p>
+            <div class="center">
+                <img src="cg-image.png" alt="Icon image" width="100%" />
+            </div>
+            <p>Please feel free to contact me if you have any suggestions!</p>
+            <br>
+
+            <a href="tel:(123) 456-789" data-role="button" data-icon="plus" data-iconpos="left"
+                style="text-align: left;">Call:
+                123.456.789</a>
+            <a href="mailto:cgurung3466@conestogac.on.ca" data-role="button" data-icon="plus" data-iconpos="left"
+                style="text-align: left;">Email:
+                cgurung3466@conestogac.on.ca</a>
+            <a href="https://www.conestogac.on.ca/" target="_blank" data-role="button" data-icon="plus"
+                data-iconpos="left" style="text-align: left;">Web:
+                www.conestogac.on.ca</a>
+        </section>
+        <footer data-role="footer" data-position="fixed" data-theme="a">
+            <h1>&copy; 2023 Chiran Gurung</h1>
+        </footer>
+    </div>
+
+    <!--Add Review page-->
+    <div id="cgAddReviewPage" data-role="page">
+        <header data-role="header" data-position="fixed" data-theme="a">
+            <h3>Add a Review</h3>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#cgHomePage" data-icon="home">Home</a></li>
+                    <li><a href="#cgAddReviewPage" data-icon="plus" class="ui-btn-active ui-state-persist">Add</a></li>
+                    <li><a href="#cgViewReviewPage" data-icon="grid">Review</a></li>
+                    <li><a href="#cgSettingPage" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <div id="mainDiv">
+                <form id="frmAdd" name="frmAdd">
+                    <label for="txtRestName">Restaurant Name: </label>
+                    <input type="text" id="txtRestName" name="txtRestName" data-clear-btn="true">
+
+                    <label for="txtBusId">Business Id: </label>
+                    <input type="text" id="txtBusId" name="txtBusId" data-clear-btn="true">
+
+                    <label for="cmbState">Choose State: </label>
+                    <select name="cmbState" id="cmbState" data-native-menu="false">
+                        <option value="ON">Ontario</option>
+                        <option value="BC">British Columbia</option>
+                        <option value="AL">Alberta</option>
+                        <option value="MB">Manitoba</option>
+                    </select>
+
+                    <label for="txtRevEmail">Reviewer Email: </label>
+                    <input type="text" id="txtRevEmail" name="txtRevEmail" data-clear-btn="true">
+
+                    <label for="textareaComment">Reviewer Comments: </label>
+                    <input type="text" id="textareaComment" name="textareaComment" data-clear-btn="true">
+
+                    <label for="cbRating">
+                        <input type="checkbox" name="cbRating" id="cbRating" class="wantRate">
+                        Do you want to add your ratings?
+                    </label>
+
+                    <div id="rating-fields" class="rating-fields">
+                        <label for="numQuality">Food Quality (0-5)</label>
+                        <input type="number" name="numQuality" id="numQuality" data-clear-btn="true" value="0">
+                        <label for="service">Service (0-5)</label>
+                        <input type="number" name="numService" id="numService" data-clear-btn="true" value="0">
+                        <label for="value">Value (0-5)</label>
+                        <input type="number" name="numValue" id="numValue" data-clear-btn="true" value="0">
+
+
+                        <label for="sldRate">Overall Ratings(1-100): </label>
+
+                        <input type="range" id="sldRate" name="sldRate" data-highlight="true" value="0">
+                    </div>
+
+                    <button type="button" id="btnAdd" name="btnAdd" class="ui-btn-active">Save</button>
+
+                </form>
+            </div>
+        </section>
+        <footer data-role="footer" data-position="fixed" data-theme="a">
+            <h1>&copy; 2023 Chiran Gurung</h1>
+        </footer>
+    </div>
+
+    <!--View Review page-->
+    <div id="cgViewReviewPage" data-role="page">
+        <header data-role="header" data-position="fixed" data-theme="a">
+            <h3>List of Reviews</h3>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#cgHomePage" data-icon="home">Home</a></li>
+                    <li><a href="#cgAddReviewPage" data-icon="plus">Add</a></li>
+                    <li><a href="#cgViewReviewPage" data-icon="grid" class="ui-btn-active ui-state-persist">Review</a>
+                    </li>
+                    <li><a href="#cgSettingPage" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <ul id="1stViewReview" data-role="listview" class="ui-listview-inset" data-split-icon="gear">
+                <li>
+                    <a href="#cgModifyReviewPage" data-theme="a">
+                        <h3>Restaurant Name: Jack & Joe's Bar</h3>
+                        <p>Business Id: BN0101</p>
+                        <p>State: Ontario</p>
+                        <p>Reviewer Email: john@gmail.com</p>
+                        <p>Reviewer Comments: Nice Spinach cheese dip with chips.</p>
+                        <p>Overall Ratings: 90%</p>
+                    </a>
+                    <a href="#cgModifyReviewPage" data-split-icon="gear"></a>
+                </li>
+                <li>
+                    <a href="#cgModifyReviewPage" data-theme="a">
+                        <h3>Restaurant Name: Black Oak Grill & Bar</h3>
+                        <p>Business Id: BN0121</p>
+                        <p>State: British Columbia</p>
+                        <p>Reviewer Email: himan@gmail.com</p>
+                        <p>Reviewer Comments: Good Spinach!!</p>
+                        <p>Overall Ratings: 70%</p>
+                    </a>
+                    <a href="#cgModifyReviewPage" data-split-icon="gear"></a>
+
+                </li>
+                <li>
+                    <a href="#cgModifyReviewPage" data-theme="a">
+                        <h3>Restaurant Name: Burger King Restaurant</h3>
+                        <p>Business Id: BN0111</p>
+                        <p>State: Alberta</p>
+                        <p>Reviewer Email: albert@gmail.com</p>
+                        <p>Reviewer Comments: Best Burger in the town!</p>
+                        <p>Overall Ratings: 95%</p>
+                    </a>
+                    <a href="#cgModifyReviewPage" data-split-icon="gear"></a>
+
+                </li>
+            </ul>
+        </section>
+        <footer data-role="footer" data-position="fixed" data-theme="a">
+            <h1>&copy; 2023 Chiran Gurung</h1>
+        </footer>
+    </div>
+
+    <!--Modify Review page-->
+    <div id="cgModifyReviewPage" data-role="page">
+        <header data-role="header" data-position="fixed" data-theme="a">
+            <h3>Modify Reviews</h3>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#cgHomePage" data-icon="home">Home</a></li>
+                    <li><a href="#cgAddReviewPage" data-icon="plus">Add</a></li>
+                    <li><a href="#cgViewReviewPage" data-icon="grid" class="ui-btn-active ui-state-persist">Review</a>
+                    </li>
+                    <li><a href="#cgSettingPage" data-icon="gear">Settings</a></li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <form id="frmModifyReview" name="frmModifyReview">
+
+                <div hidden>
+                    <label for="txtId">Id </label>
+                    <input type="text" id="txtId" name="txtId" class="required" data-theme="a" data-clear-btn="true"
+                        placeholder="Enter ID">
+                </div>
+
+                <label for="txtRestName">Restaurant Name: </label>
+                <input type="text" id="txtRestName" name="txtRestName" placeholder="Jack & Joe's bar"
+                    data-clear-btn="true">
+
+                <label for="txtBusId">Business Id: </label>
+                <input type="text" id="txtBusId" name="txtBusId" placeholder="BN0101" data-clear-btn="true">
+
+                <label for="cmbState">Choose State: </label>
+                <select name="cmbState" id="cmbState" data-native-menu="false">
+                    <option value="ON" selected>Ontario</option>
+                    <option value="BC">British Columbia</option>
+                    <option value="AL">Alberta</option>
+                    <option value="MB">Manitoba</option>
+                </select>
+
+                <label for="txtRevEmail">Reviewer Email: </label>
+                <input type="text" id="txtRevEmail" name="txtRevEmail" placeholder="john@gmail.com"
+                    data-clear-btn="true">
+
+
+                <label for="textareaComment">Reviewer Comments: </label>
+                <input type="text" id="textareaComment" name="textareaComment"
+                    placeholder="Nice Spinach cheese dip with chips." data-clear-btn="true">
+
+                <label for="cbRating">
+                    <input type="checkbox" name="cbRating" id="cbRating" class="wantRate">
+                    Do you want to add your ratings?
+                </label>
+                <div id="rating-fields" class="rating-fields">
+                    <label for="numQuality">Food Quality (0-5)</label>
+                    <input type="number" name="numQuality" id="numQualityMod" data-clear-btn="true" value="0">
+                    <label for="numService">Service (0-5)</label>
+                    <input type="number" name="numService" id="numServiceMod" data-clear-btn="true" value="0">
+                    <label for="numValue">Value (0-5)</label>
+                    <input type="number" name="numValue" id="numValueMod" data-clear-btn="true" value="0">
+
+
+                    <label for="sldRateMod">Overall Ratings(1-100): </label>
+
+                    <input type="range" id="sldRateMod" name="sldRateMod" data-highlight="true" value="0">
+                </div>
+
+
+                <div data-role="controlgroup" data-type="horizontal" class="left">
+
+
+                    <button type="button" id="btnCancel" name="btnCancel" data-theme="a">
+                        Cancel
+                    </button>
+                    <button type="button" id="btnDelete" name="btnDelete" data-theme="b">
+                        Delete
+                    </button>
+                    <button type="button" id="btnUpdate" name="btnUpdate" class="ui-btn-active">
+                        Update
+                    </button>
+                </div>
+            </form>
+        </section>
+        <footer data-role="footer" data-position="fixed" data-theme="a">
+            <h1>&copy; 2023 Chiran Gurung</h1>
+        </footer>
+    </div>
+
+    <!--Settings page-->
+    <div id="cgSettingPage" data-role="page">
+        <header data-role="header" data-position="fixed" data-theme="a">
+            <h3>Settings</h3>
+            <div data-role="navbar" data-iconpos="top">
+                <ul>
+                    <li><a href="#cgHomePage" data-icon="home">Home</a></li>
+                    <li><a href="#cgAddReviewPage" data-icon="plus">Add</a></li>
+                    <li><a href="#cgViewReviewPage" data-icon="grid">Review</a></li>
+                    <li><a href="#cgSettingPage" data-icon="gear" class="ui-btn-active ui-state-persist">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <section data-role="content">
+            <label for="txtDefRevMail">Default Reviewer Email: </label>
+            <input type="text" id="txtDefRevMail" name="txtDefRevMail" data-clear-btn="true">
+            <button type="button" id="btnSave" name="btnSave" class="ui-btn-active">Save
+            </button>
+
+            <button type="button" id="btnCancel" name="btnCancel" data-theme="b">Save
+            </button>
+        </section>
+        <footer data-role="footer" data-position="fixed" data-theme="a">
+            <h1>&copy; 2023 Chiran Gurung</h1>
+        </footer>
+    </div>
+</body>
+
+</html>

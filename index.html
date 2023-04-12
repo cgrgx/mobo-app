@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=10., maximum-scale=1.0, user-scalable=no">
-    <title>CG Review A2</title>
+    <title>CG Review A3</title>
 
     <!--jquery-->
     <script src="js/lib/jquery-2.1.4.js"></script>
@@ -17,6 +17,7 @@
     <script src="js/cgdatabase.js"></script>
     <script src="js/cgDAL.js"></script>
     <script src="js/cgfacade.js"></script>
+    <script src="js/cgReviewClass.js"></script>
     <script src="js/cgutil.js"></script>
     <script src="js/cgglobal.js"></script>
     <link rel="stylesheet" href="css/cgmystyle.css">
@@ -26,7 +27,7 @@
     <!--home page-->
     <div id="cgHomePage" data-role="page">
         <header data-role="header" data-position="fixed" data-theme="a">
-            <h3>CG Review A2</h3>
+            <h3>CG Review A3</h3>
             <div data-role="navbar" data-iconpos="top">
                 <ul>
                     <li><a href="#cgHomePage" data-icon="home" class="ui-btn-active ui-state-persist">Home</a></li>
@@ -37,9 +38,9 @@
             </div>
         </header>
         <section data-role="content">
-            <h2>Chiran Gurung's Review A2 App</h2>
+            <h2>Chiran Gurung's Review A3 App</h2>
 
-            <p>Welcome to the Chiran Gurung's Review A2 App. A prototype designed for mobile programming class. This
+            <p>Welcome to the Chiran Gurung's Review A3 App. A prototype designed for mobile programming class. This
                 is the first iteration of the app to keep track of different places you visited along with your
                 reviews.</p>
             <div class="center">
@@ -289,10 +290,10 @@
         <section data-role="content">
             <label for="txtDefRevMail">Default Reviewer Email: </label>
             <input type="text" id="txtDefRevMail" name="txtDefRevMail" data-clear-btn="true">
-            <button type="button" id="btnSave" name="btnSave" class="ui-btn-active">Save
+            <button type="button" id="btnSave" name="btnSave" class="ui-btn-active">SaveDefaults
             </button>
 
-            <button type="button" id="btnCancel" name="btnCancel" data-theme="b">Save
+            <button type="button" id="btnClearDatabase" name="btnClearDatabase" data-theme="b">Clear Database
             </button>
         </section>
         <footer data-role="footer" data-position="fixed" data-theme="a">
